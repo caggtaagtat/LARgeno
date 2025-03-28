@@ -91,14 +91,31 @@ git clone https://github.com/caggtaagtat/LARgeno.git
 ## Usage
 ### Generatl Usage
 ```bash
-bash ./LARgeno.sh -i /home-ssd/jopto100/genoKIR/KIRPool23 \
--o /home-ssd/jopto100/genoKIR/ \
--m /home-ssd/jopto100/miniconda3/ \
--g /home/coronam/bin/ont-guppy-6.5.7/bin/ \
--c /home-ssd/jopto100/software/Clair3 \
--r /home-ssd/jopto100/references/LARgeno/KIR3DL1_KIR3DS1_references_IPDKIR_release_2.14.0_date_20.12.24.fasta \
--b /home-ssd/jopto100/references/LARgeno/allKIR_genes_except_KIR3DL1_KIR3DS1_references_IPDKIR_release_2.14.0_date_20.12.24.fasta \
--l 10000 \
--t 20 \
--e r941_min_hac_g507  
+bash ./LARgeno.sh \
+-i $INPUTPATH \
+-o $OUTPUTPATH \
+-m $MINICONDAPATH \
+-g $GUPPYPATH \
+-c $CLAIRPATH \
+-r $REFERENCE \
+-b $REFERENCE_BACKGROUND \
+-l $MINLENGTH \
+-t $THREADS 
+```
+### Options
+#### Required parameters
+```bash
+-i         Input path. Path to the directory of the sequencing data (if in tar.gz compressed format, provied path of tar.gz file). Must contain sub-folder "fastq_pass". (Example: "/home/user/genoKIR/KIRPool2" or "/home/user/genoKIR/KIRPool2.tar.gz")
+-o         Output path. Path where the output directory $INPUTPATH"genotyp" will be generated. (Example: "/home/user/genoKIR/")
+-m         Path to miniconda or anaconda directory. (Example: "/home/user/miniconda3/")
+-g         Path to guppy bin directory (please use the last guppy version 6.5.7. (Example: "/home/coronam/bin/ont-guppy-6.5.7/bin/" )
+-c         Path to Clair3 directory. (Example: "/home-ssd/jopto100/software/Clair3")
+-r         Reference sequences as FASTA file. (Example: "/home/user/references/IPDKIR_release_2.14.fasta")
+-l         Minimal Read length treshold. (Example: "10000")
+-t         Maximal number of threads to use. (Example: "20")
+```
+
+#### Optional parameters
+```bash
+-b        Reference background FASTA file. Reads will be aligned against both the reference and the reference background file, keeping only reads that best align against the reference. (Example: /home/user/references/References_except_targetGene_IPDKIR_release_2.14.fasta")
 ```
